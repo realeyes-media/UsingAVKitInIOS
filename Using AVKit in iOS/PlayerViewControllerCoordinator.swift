@@ -47,6 +47,7 @@ class PlayerViewControllerCoordinator: NSObject {
 			
 			readyForDisplayObservation?.invalidate()
 			readyForDisplayObservation = nil
+            avarl = nil
 			
 			if oldValue?.delegate === self {
 				oldValue?.delegate = nil
@@ -67,7 +68,15 @@ class PlayerViewControllerCoordinator: NSObject {
 				
 				// 2b) Create player for video
 				if !playerViewController.hasContent(fromVideo: video) {
-					let playerItem = AVPlayerItem(url: video.hlsUrl)
+                    let asset = AVURLAsset(url: video.hlsUrl)
+
+                    let avarl = AVARL()
+                    self.avarl = avarl
+
+                    let queue = DispatchQueue(label: "com.realeyes.avarl")
+                    asset.resourceLoader.setDelegate(avarl, queue: queue)
+
+                    let playerItem = AVPlayerItem(asset: asset)
 					// Note that we seek to the resume time *before* giving the player view controller the player.
 					// This is more efficient and provides better UI since media is only loaded at the actual start time.
 					playerItem.seek(to: CMTime(seconds: video.resumeTime, preferredTimescale: 90_000), completionHandler: nil)
@@ -98,6 +107,7 @@ class PlayerViewControllerCoordinator: NSObject {
 	
 	private weak var fullScreenViewController: UIViewController?
 	private var readyForDisplayObservation: NSKeyValueObservation?
+    private var avarl: AVARL?
 	private lazy var debugHud = DebugHUD()
 }
 

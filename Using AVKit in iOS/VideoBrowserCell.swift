@@ -54,10 +54,18 @@ class VideoBrowserCell: UICollectionViewCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		contentView.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
-		contentView.layer.cornerCurve = .continuous
+        if #available(iOS 13.0, *) {
+            contentView.layer.cornerCurve = .continuous
+        } else {
+            // Fallback on earlier versions
+        }
 		contentView.layer.cornerRadius = 12.0
 		containerView.clipsToBounds = true
-		containerView.layer.cornerCurve = .continuous
+        if #available(iOS 13.0, *) {
+            containerView.layer.cornerCurve = .continuous
+        } else {
+            // Fallback on earlier versions
+        }
 		containerView.layer.cornerRadius = 8.0
 	}
 	
