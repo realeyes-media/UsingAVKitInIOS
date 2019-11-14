@@ -13,7 +13,7 @@ let masterPlaylist = """
 #EXT-X-VERSION:6
 #EXT-X-INDEPENDENT-SEGMENTS
 
-#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs",NAME="english",AUTOSELECT=YES,FORCED=NO,LANGUAGE="en",URI="https://llnw-stg.vod.peacocktv.com/pub/usterr/212/221/GMO_00000000002656_01/cmaf/master_cmaf.subtitles.0.m3u8?e=1573260512&p=46&cd=1573224512&cf=1573224512&h=58e1b2b28bdd1c46042b7ea38d47a7d9"
+#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs",NAME="english",AUTOSELECT=YES,FORCED=NO,LANGUAGE="en",URI="rehttps://llnw-stg.vod.peacocktv.com/pub/usterr/212/221/GMO_00000000002656_01/cmaf/master_cmaf.subtitles.0.m3u8?e=1573260512&p=46&cd=1573224512&cf=1573224512&h=58e1b2b28bdd1c46042b7ea38d47a7d9"
 
 #EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="eac3",NAME="Surround English",LANGUAGE="en",AUTOSELECT=YES,DEFAULT=YES,URI="rehttps://llnw-stg.vod.peacocktv.com/pub/usterr/212/221/GMO_00000000002656_01/cmaf/layer_surround/layer_surround_cmaf-0.m3u8?e=1573260512&p=46&cd=1573224512&cf=1573224512&h=58e1b2b28bdd1c46042b7ea38d47a7d9"
 
@@ -287,4 +287,45 @@ https://llnw-stg.vod.peacocktv.com/pub/usterr/212/221/GMO_00000000002656_01/cmaf
 #EXTINF:5.9907,
 https://llnw-stg.vod.peacocktv.com/pub/usterr/212/221/GMO_00000000002656_01/cmaf/layer_stereo/CHICAGOPD_G4216_T27087_OAR_ENG_51_ENG_20_771184786-8-1_00003.mp4?e=1573260512&p=46&cd=1573224512&cf=1573224512&h=58e1b2b28bdd1c46042b7ea38d47a7d9
 #EXT-X-ENDLIST
+"""
+
+let subtitlePlaylist = """
+#EXTM3U
+#EXT-X-TARGETDURATION:9999999
+#EXT-X-VERSION:3
+#EXT-X-MEDIA-SEQUENCE:0
+#EXT-X-PLAYLIST-TYPE:VOD
+#EXTINF:2576,
+rehttps://llnw-stg.vod.peacocktv.com/pub/usterr/212/221/GMO_00000000002656_01/cmaf/CHICAGOPD_G4216_T27087_OAR_ENG_51_ENG_20_771184786.subtitles.0.split.0.webvtt
+#EXT-X-ENDLIST
+"""
+
+let webvtt = """
+WEBVTT
+X-TIMESTAMP-MAP=MPEGTS:2002,LOCAL:00:00:00.000
+
+00:00:20.630 --> 00:00:21.673
+I just don't tolerate
+in-house romance.
+
+00:00:23.425 --> 00:00:24.843
+You don't get to tell me who
+I can and can't hang out with
+
+00:00:24.884 --> 00:00:26.344
+on my personal time.
+
+00:00:26.386 --> 00:00:28.513
+I'm not really the
+sneak-around-behind-Dad's-back
+
+00:00:28.555 --> 00:00:29.514
+kind of guy.
+
+00:00:29.556 --> 00:00:30.141
+Says the guy that works
+undercover.
+
+00:00:31.182 --> 00:00:32.559
+Let's just come clean.
 """

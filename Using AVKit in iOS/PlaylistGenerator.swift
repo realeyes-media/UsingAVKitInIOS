@@ -21,10 +21,22 @@ let mediaPlaylistAudioDict: [String: String] = [
 "https://llnw-stg.vod.peacocktv.com/pub/usterr/212/221/GMO_00000000002656_01/cmaf/layer_stereo/layer_stereo_cmaf-1.m3u8?e=1573260512&p=46&cd=1573224512&cf=1573224512&h=58e1b2b28bdd1c46042b7ea38d47a7d9" : mediaPlaylistAudioStereo
 ]
 
-func generatePlaylist(fromData data: Data, url: String, isMaster: Bool, isAudio: Bool) -> Data {
+let subtitleDict: [String: String] = [
+    "https://llnw-stg.vod.peacocktv.com/pub/usterr/212/221/GMO_00000000002656_01/cmaf/master_cmaf.subtitles.0.m3u8": subtitlePlaylist
+]
+
+let webvttDict: [String: String] = [
+    "https://llnw-stg.vod.peacocktv.com/pub/usterr/212/221/GMO_00000000002656_01/cmaf/CHICAGOPD_G4216_T27087_OAR_ENG_51_ENG_20_771184786.subtitles.0.split.0.webvtt": webvtt
+]
+
+func generatePlaylist(fromData data: Data, url: String, isMaster: Bool, isAudio: Bool, isSub: Bool, isWebVtt: Bool) -> Data {
     if isMaster {
         return masterPlaylist.data(using: .utf8) ?? data
     }
 
-    return isAudio ? mediaPlaylistAudioDict[url]?.data(using: .utf8) ?? data : mediaPlaylistVideoDict[url]?.data(using: .utf8) ?? data
+    if isSub {
+        return !isWebVtt ? subtitleDict[url]?.data(using: .utf8) ?? data : webvttDict[url]?.data(using: .utf8) ?? data
+    } else {
+        return isAudio ? mediaPlaylistAudioDict[url]?.data(using: .utf8) ?? data : mediaPlaylistVideoDict[url]?.data(using: .utf8) ?? data
+    }
 }

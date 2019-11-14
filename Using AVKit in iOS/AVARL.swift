@@ -52,12 +52,14 @@ class AVARL: NSObject, AVAssetResourceLoaderDelegate {
 
             if let _ = loadingRequest.dataRequest {
                 let isAudio = responseUrl.contains("stereo") || responseUrl.contains("surround")
+                let isSub = responseUrl.contains("subtitles")
+                let isWebVtt = responseUrl.contains(".webvtt")
                 let isMediaPlaylist = self?.completedMasterRequest ?? false
                 self?.completedMasterRequest = true
 
                 print("isMaster: \(!isMediaPlaylist)")
                 print("isAudio: \(isAudio)")
-                let playlistData = generatePlaylist(fromData: data, url: url.absoluteString, isMaster: !isMediaPlaylist, isAudio: isAudio)
+                let playlistData = generatePlaylist(fromData: data, url: url.absoluteString, isMaster: !isMediaPlaylist, isAudio: isAudio, isSub: isSub, isWebVtt: isWebVtt)
                 print("playlistData: \(String(data: playlistData, encoding: .utf8) ?? "something is wrong")")
                 loadingRequest.dataRequest?.respond(with: playlistData)
             }
